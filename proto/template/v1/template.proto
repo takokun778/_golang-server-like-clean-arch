@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package template.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./template";
+
+message Template {
+    string id = 1;
+    string sample = 2;
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp updated_at = 4;
+}
+
+service TemplateService {
+    rpc Create (CreateRequest) returns (CreateResponse);
+    rpc Get (GetRequest) returns (GetResponse);
+    rpc GetAll (GetAllRequest) returns (GetAllResponse);
+    rpc Update (UpdateRequest) returns (UpdateResponse);
+    rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+message CreateRequest {
+    string sample = 1;
+}
+
+message CreateResponse {
+    Template Template = 1;
+}
+
+message GetRequest {
+    string id = 1;
+}
+
+message GetResponse {
+    Template Template = 1;
+}
+
+message GetAllRequest {
+}
+
+message GetAllResponse {
+    repeated Template Template = 1;
+}
+
+message UpdateRequest {
+    string id = 1;
+    string sample = 2;
+}
+
+message UpdateResponse {
+    Template Template = 1;
+}
+
+message DeleteRequest {
+    string id = 1;
+}
+
+message DeleteResponse {
+    Template Template = 1;
+}
